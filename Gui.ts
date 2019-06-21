@@ -1,10 +1,10 @@
-/// <reference path="incrementum-ludus/Engine/interfaces/IResource.ts" />
-/// <reference path="incrementum-ludus/Engine/interfaces/IQuantity.ts" />
-/// <reference path="incrementum-ludus/Engine/interfaces/IProducer.ts" />
-/// <reference path="incrementum-ludus/Engine/interfaces/ITrigger.ts" />
-/// <reference path="incrementum-ludus/Engine/interfaces/ICrafter.ts" />
-/// <reference path="incrementum-ludus/Engine/interfaces/IPlayer.ts" />
-/// <reference path="incrementum-ludus/Engine/Engine.ts" />
+/// <reference path="incrementum-ludus/IncrementumLudus/interfaces/IResource.ts" />
+/// <reference path="incrementum-ludus/IncrementumLudus/interfaces/IQuantity.ts" />
+/// <reference path="incrementum-ludus/IncrementumLudus/interfaces/IProducer.ts" />
+/// <reference path="incrementum-ludus/IncrementumLudus/interfaces/ITrigger.ts" />
+/// <reference path="incrementum-ludus/IncrementumLudus/interfaces/ICrafter.ts" />
+/// <reference path="incrementum-ludus/IncrementumLudus/interfaces/IPlayer.ts" />
+/// <reference path="incrementum-ludus/IncrementumLudus/IncrementumLudus.ts" />
 
 /// <reference path="./CategorizedMaterial.ts" />
 /// <reference path="./CategorizedItem.ts" />
@@ -13,7 +13,7 @@
 
 class Gui {
     intervalId : number = 0;
-    constructor(private engine: Engine) {
+    constructor(private engine: IncrementumLudus) {
         this.engine = engine;
     }
 
@@ -188,9 +188,9 @@ class Gui {
         triggers.forEach(
             trig => {
                 h += "<tr>";
-                if (trig.getChangeEngineStatus() == EngineStatus.WIN) {
+                if (trig.getChangeEngineStatus() == IncrementumLudusStatus.WIN) {
                     h += '<td>[<span class="win" title="Reach this goal and you win.">Win</span>] ' + trig.getName() + "</td>";
-                } else if (trig.getChangeEngineStatus() == EngineStatus.LOOSE) {
+                } else if (trig.getChangeEngineStatus() == IncrementumLudusStatus.LOOSE) {
                     h += '<td>[<span class="loose" title="Reach this qoal and you loose.">Loose</span>] ' + trig.getName() + "</td>";
                 } else {
                     h += '<td>' + trig.getName() + "</td>";
@@ -291,16 +291,16 @@ class Gui {
     }
 
 
-    private engineStatus : EngineStatus = EngineStatus.NOT_YET_STARTED;
+    private engineStatus : IncrementumLudusStatus = IncrementumLudusStatus.NOT_YET_STARTED;
 
     loose() {
-        if (this.engine.status == EngineStatus.LOOSE 
-            && this.engineStatus != EngineStatus.LOOSE) {
+        if (this.engine.status == IncrementumLudusStatus.LOOSE 
+            && this.engineStatus != IncrementumLudusStatus.LOOSE) {
                 this.endGame(false, "You die! Try again, you may have better luck next time.");
                 this.engineStatus = this.engine.status;
         }
-        if (this.engine.status == EngineStatus.WIN
-            && this.engineStatus != EngineStatus.WIN) {
+        if (this.engine.status == IncrementumLudusStatus.WIN
+            && this.engineStatus != IncrementumLudusStatus.WIN) {
                 this.endGame(true, "You win! Wait for the next evolution of the game.");
                 this.engineStatus = this.engine.status;
         }

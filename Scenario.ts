@@ -1,13 +1,13 @@
-/// <reference path="incrementum-ludus/Engine/interfaces/IResource.ts" />
-/// <reference path="incrementum-ludus/Engine/interfaces/IQuantity.ts" />
-/// <reference path="incrementum-ludus/Engine/interfaces/IProducer.ts" />
-/// <reference path="incrementum-ludus/Engine/interfaces/ITrigger.ts" />
-/// <reference path="incrementum-ludus/Engine/interfaces/ICrafter.ts" />
-/// <reference path="incrementum-ludus/Engine/interfaces/IPlayer.ts" />
-/// <reference path="incrementum-ludus/Engine/Engine.ts" />
+/// <reference path="incrementum-ludus/IncrementumLudus/interfaces/IResource.ts" />
+/// <reference path="incrementum-ludus/IncrementumLudus/interfaces/IQuantity.ts" />
+/// <reference path="incrementum-ludus/IncrementumLudus/interfaces/IProducer.ts" />
+/// <reference path="incrementum-ludus/IncrementumLudus/interfaces/ITrigger.ts" />
+/// <reference path="incrementum-ludus/IncrementumLudus/interfaces/ICrafter.ts" />
+/// <reference path="incrementum-ludus/IncrementumLudus/interfaces/IPlayer.ts" />
+/// <reference path="incrementum-ludus/IncrementumLudus/IncrementumLudus.ts" />
 
-/// <reference path="incrementum-ludus/Engine/implementations/RandomResource.ts" />
-/// <reference path="incrementum-ludus/Engine/implementations/RandomRangeQuantity.ts" />
+/// <reference path="incrementum-ludus/IncrementumLudus/implementations/RandomResource.ts" />
+/// <reference path="incrementum-ludus/IncrementumLudus/implementations/RandomRangeQuantity.ts" />
 /// <reference path="./CategorizedMaterial.ts" />
 /// <reference path="./CategorizedItem.ts" />
 /// <reference path="./Level.ts" />
@@ -34,10 +34,10 @@ const STARVATION_FOOD   = new CategorizedItem("starvation", "skull_grey.svg", "g
 const STARVATION        = new CategorizedItem("starvation", "skull_white.svg", "global");
 
 class Scenario {
-    public static initEngine() : Engine {
+    public static initEngine() : IncrementumLudus {
         let Q = (quantity : number, res : IResource) => new Quantity(quantity, res);
 
-        var engine = new Engine();
+        var engine = new IncrementumLudus();
         engine.player = new Player("Chuck Noland");
         engine.player.getPreventNegativeStorage();
         // inital storage

@@ -24,7 +24,7 @@ var Scenario = (function () {
     }
     Scenario.initEngine = function () {
         var Q = function (quantity, res) { return new Quantity(quantity, res); };
-        var engine = new Engine();
+        var engine = new IncrementumLudus();
         engine.player = new Player("Chuck Noland");
         engine.player.getPreventNegativeStorage();
         engine.player.increaseStorage(Q(-1, STARVATION));
